@@ -1,0 +1,19 @@
+version:  "3.9"
+services:
+  radius:
+    image: johnreah/radius
+    ports:
+      - "1812-1813:1812-1813/udp"
+    command: -X
+    depends_on:
+      - database
+  database:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - radius-postgres-volume:/var/lib/postgresql/data
+volumes:
+  radius-postgres-volume:
