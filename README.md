@@ -1,1 +1,2 @@
-Readme
+# Radius
+Experimenting with high-availability deployment of FreeRADIUS, initially using docker-compose but with the intention of a serverless deployment to AWS using a Network Load Balancer, ECS/Fargate containers and an Aurora database.
