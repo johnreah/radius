@@ -1,5 +1,7 @@
 version:  "3.9"
+
 services:
+
   radius:
     image: johnreah/radius
     ports:
@@ -7,13 +9,15 @@ services:
     command: -X
     depends_on:
       - database
+
   database:
-    image: postgres
+    image: johnreah/radius-mysql
     ports:
-      - "5432:5432"
+      - "3306:3306"
     environment:
-      - POSTGRES_PASSWORD=postgres
+      - MYSQL_ROOT_PASSWORD=$MYSQL_PASSWORD
     volumes:
-      - radius-postgres-volume:/var/lib/postgresql/data
+      - radius-mysql-volume:/var/lib/mysql
+
 volumes:
-  radius-postgres-volume:
+  radius-mysql-volume:
