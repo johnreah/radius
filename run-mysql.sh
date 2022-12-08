@@ -9,10 +9,10 @@ docker rm $CONTAINER_NAME
 
 echo "Starting new container..."
 docker run \
-    --detach \
     --name $CONTAINER_NAME \
-    -p 3306:3306 \
-    -e MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD \
+    --detach \
+    --publish 3306:3306 \
+    --env MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD \
     --network=radius-net \
     johnreah/radius-mysql
 

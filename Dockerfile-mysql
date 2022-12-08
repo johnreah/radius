@@ -4,5 +4,5 @@ WORKDIR /docker-entrypoint-initdb.d
 
 COPY mysql/files/*.sql .
 
-RUN cat 01-create-database.sql 02-create-schema.sql 03-create-user.sql > db-init.sql && \
-    rm 01-create-database.sql 02-create-schema.sql 03-create-user.sql
+RUN cat 01-create-database.sql 02-create-schema.sql 03-create-user.sql 04-test-data.sql > db-init.sql && \
+    rm 01-create-database.sql 02-create-schema.sql 03-create-user.sql 04-test-data.sql

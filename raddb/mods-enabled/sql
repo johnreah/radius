@@ -164,10 +164,13 @@ sql {
 
 	# Connection info:
 	#
-	server = "radius-mysql"
+	#server = "radius-mysql"
 	port = 3306
-	login = "radius"
-	password = "radpass"
+	#login = "radius"
+	#password = "radpass"
+	server = $ENV{RADIUS_DB_SERVER}
+	login = $ENV{RADIUS_DB_USER}
+	password = $ENV{RADIUS_DB_PASSWORD}
 
 	# Connection info for Mongo
 	# Authentication Without SSL

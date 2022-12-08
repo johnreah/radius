@@ -9,10 +9,13 @@ docker rm $CONTAINER_NAME
 
 echo "Starting new container..."
 docker run \
-    --detach \
     --name $CONTAINER_NAME \
-    -p 1812-1813:1812-1813/udp \
+    --detach \
+    --publish 1812-1813:1812-1813/udp \
     --network=radius-net \
+    --env RADIUS_DB_SERVER=$RADIUS_DB_SERVER \
+    --env RADIUS_DB_USER=$RADIUS_DB_USER \
+    --env RADIUS_DB_PASSWORD=$RADIUS_DB_PASSWORD \
     johnreah/radius -X
 
 docker logs -f $CONTAINER_NAME
