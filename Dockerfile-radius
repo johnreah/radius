@@ -1,12 +1,16 @@
 FROM freeradius/freeradius-server:latest
 
+RUN apt update && \
+    apt install -y ncat
+
 COPY raddb/ /etc/raddb/
 
 RUN chmod 640 /etc/raddb/clients.conf && \
     chmod 644 /etc/raddb/mods-config/files/authorize && \
+    chmod 644 /etc/raddb/mods-enabled && \
+    chmod 644 /etc/raddb/mods-enabled/sql && \
+    chmod 644 /etc/raddb/sites-enabled && \
+    chmod 644 /etc/raddb/sites-enabled/default && \
     chmod +x /etc/raddb/*.sh
-
-RUN apt update && \
-    apt install -y ncat
 
 CMD nohup /etc/raddb/healthcheck.sh & freeradius -X
